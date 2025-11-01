@@ -1,0 +1,34 @@
+﻿@TodoApi_HostAddress = http://localhost:5028
+
+POST {{TodoApi_HostAddress}}/api
+Content-Type: application/json
+
+{
+  "name":"task 12323",
+  "isComplete":false,
+  "Secret": "I play dota 3"
+}
+
+###
+GET {{TodoApi_HostAddress}}
+Content-Type: application/json
+
+  {
+    "id": 1,
+    "name": "task 1",
+    "isComplete": true
+  }
+
+###
+PUT {{TodoApi_HostAddress}}
+Content-Type: application/json
+
+{
+ "id": 1,
+  "name": "task 1",
+ "isComplete": false
+}
+###
+
+DELETE {{TodoApi_HostAddress}}/
+###

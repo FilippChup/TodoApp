@@ -1,0 +1,22 @@
+﻿version: '3.8'
+services:
+  db:
+    image: postgres:17
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: example
+      POSTGRES_USER: example
+      POSTGRES_DB: example
+    ports:
+      - 6432:5432
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+  
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 9080:8080
+
+volumes:
+  pgdata:
