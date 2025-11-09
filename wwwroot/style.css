@@ -43,7 +43,7 @@ header{
 }
 
 .inputField input:focus{
-    
+    border-color: #34e89e;
 }
 
 .inputField button{
