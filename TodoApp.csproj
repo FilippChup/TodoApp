@@ -10,12 +10,14 @@
       <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="9.0.10" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="9.0.10" />
       <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.4" />
+      <PackageReference Include="Razor.Templating.Core" Version="2.1.0" />
     </ItemGroup>
 
     <ItemGroup>
       <None Include="wwwroot\favicon.ico" />
       <None Include="wwwroot\index.html" />
       <None Include="wwwroot\Index.js" />
+      <None Include="wwwroot\mainWindow.xaml" />
       <None Include="wwwroot\style.css" />
     </ItemGroup>
 

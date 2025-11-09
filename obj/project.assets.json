@@ -301,6 +301,18 @@
             "related": ".xml"
           }
         }
+      },
+      "Razor.Templating.Core/2.1.0": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/Razor.Templating.Core.dll": {}
+        },
+        "runtime": {
+          "lib/net6.0/Razor.Templating.Core.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       }
     }
   },
@@ -744,13 +756,28 @@
         "npgsql.entityframeworkcore.postgresql.nuspec",
         "postgresql.png"
       ]
+    },
+    "Razor.Templating.Core/2.1.0": {
+      "sha512": "bZFEUp+ZYdEb51zJNsuXd3IEvkz0Y6OAqF4bnJzq/B8gRdlY9cA1PkDY6uWnmFANk6whKi6QVypxA8QWRS9LOA==",
+      "type": "package",
+      "path": "razor.templating.core/2.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "icon.png",
+        "lib/net6.0/Razor.Templating.Core.dll",
+        "razor.templating.core.2.1.0.nupkg.sha512",
+        "razor.templating.core.nuspec"
+      ]
     }
   },
   "projectFileDependencyGroups": {
     "net9.0": [
       "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore >= 9.0.10",
       "Microsoft.EntityFrameworkCore.InMemory >= 9.0.10",
-      "Npgsql.EntityFrameworkCore.PostgreSQL >= 9.0.4"
+      "Npgsql.EntityFrameworkCore.PostgreSQL >= 9.0.4",
+      "Razor.Templating.Core >= 2.1.0"
     ]
   },
   "packageFolders": {
@@ -814,6 +841,10 @@
           "Npgsql.EntityFrameworkCore.PostgreSQL": {
             "target": "Package",
             "version": "[9.0.4, )"
+          },
+          "Razor.Templating.Core": {
+            "target": "Package",
+            "version": "[2.1.0, )"
           }
         },
         "imports": [

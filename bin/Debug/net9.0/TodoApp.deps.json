@@ -10,7 +10,8 @@
         "dependencies": {
           "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "9.0.10",
           "Microsoft.EntityFrameworkCore.InMemory": "9.0.10",
-          "Npgsql.EntityFrameworkCore.PostgreSQL": "9.0.4"
+          "Npgsql.EntityFrameworkCore.PostgreSQL": "9.0.4",
+          "Razor.Templating.Core": "2.1.0"
         },
         "runtime": {
           "TodoApp.dll": {}
@@ -200,6 +201,14 @@
             "fileVersion": "9.0.4.0"
           }
         }
+      },
+      "Razor.Templating.Core/2.1.0": {
+        "runtime": {
+          "lib/net6.0/Razor.Templating.Core.dll": {
+            "assemblyVersion": "2.1.0.0",
+            "fileVersion": "2.1.0.0"
+          }
+        }
       }
     }
   },
@@ -327,6 +336,13 @@
       "sha512": "sha512-mw5vcY2IEc7L+IeGrxpp/J5OSnCcjkjAgJYCm/eD52wpZze8zsSifdqV7zXslSMmfJG2iIUGZyo3KuDtEFKwMQ==",
       "path": "npgsql.entityframeworkcore.postgresql/9.0.4",
       "hashPath": "npgsql.entityframeworkcore.postgresql.9.0.4.nupkg.sha512"
+    },
+    "Razor.Templating.Core/2.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-bZFEUp+ZYdEb51zJNsuXd3IEvkz0Y6OAqF4bnJzq/B8gRdlY9cA1PkDY6uWnmFANk6whKi6QVypxA8QWRS9LOA==",
+      "path": "razor.templating.core/2.1.0",
+      "hashPath": "razor.templating.core.2.1.0.nupkg.sha512"
     }
   }
 }

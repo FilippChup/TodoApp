@@ -61,6 +61,10 @@
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
               "version": "[9.0.4, )"
+            },
+            "Razor.Templating.Core": {
+              "target": "Package",
+              "version": "[2.1.0, )"
             }
           },
           "imports": [

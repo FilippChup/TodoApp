@@ -10,6 +10,9 @@ builder.Services.AddDbContext<Db>((sp, options) =>
 });
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("Host=localhost;Port=6432;Username=example;Password=example;Database=example")));
+
 var app = builder.Build();
 
 await using var scope = app.Services.CreateAsyncScope();
@@ -26,7 +29,8 @@ app.MapFallbackToFile("index.html");
 RouteGroupBuilder todoItems = app.MapGroup("");
 
 app.MapGet("/", () => Results.Redirect("/index.html"));
-todoItems.MapGet("/api/allTasks",TodoRoutes.GetAllTodos);
+todoItems.MapGet("/api/allTasks", TodoRoutes.GetAllTodos);
+todoItems.MapGet("/api/tesst", TodoRoutes.GetAllTodoss);
 todoItems.MapGet("/api/complete",TodoRoutes.GetCompleteTodos);
 todoItems.MapGet("/api/{id}", TodoRoutes.GetTodo);
 todoItems.MapPost("/api/", TodoRoutes.CreateTodo);

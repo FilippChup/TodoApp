@@ -1,16 +1,26 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>My Website</title>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="IE=edge">
+    <meta name="viewport" content="width=device=width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-<main>
-    <h1 class="main-text">Welcome to My ToDo list</h1>
-</main>
-<script src="index.js"></script>
+<div class="wrapper">
+    <header>Todo App</header>
+    <div class="inputField">
+        <input type="text" placeholder="Enter your new Todo">
+        <button>Add</button>
+    </div>
+    <ul class="todolist">
+
+    </ul>
+    <footer>
+        <span>You have <span class="pendingTasks"></span> pending tasks</span>
+        <button>Clear</button>
+    </footer>
+</div>
 </body>
-</html>
