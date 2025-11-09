@@ -45,3 +45,36 @@ header{
 .inputField input:focus{
     
 }
+
+.inputField button{
+    width: 80px;
+    height: 100%;
+    border: none;
+    color: #fff;
+    margin-left: 5px;
+    font-size: 20px;
+    background-color: #34e89e;
+    cursor: pointer;
+    border-radius: 3px;
+    opacity: 0.6;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.inputField button:hover, footer button:hover{
+    background-color: #34e89e;
+}
+
+.inputField button:active{
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.todoList{
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+.todoList li{
+    
+}
