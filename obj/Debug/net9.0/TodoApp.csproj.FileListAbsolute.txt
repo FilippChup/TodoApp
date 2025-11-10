@@ -50,6 +50,5 @@ C:\Users\Filipp\RiderProjects\TodoApp\TodoApp\bin\Debug\net9.0\Razor.Templating.
 C:\Users\Filipp\RiderProjects\TodoApp\TodoApp\obj\Debug\net9.0\TodoApp.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\Filipp\RiderProjects\TodoApp\TodoApp\obj\Debug\net9.0\TodoApp.RazorAssemblyInfo.cache
 C:\Users\Filipp\RiderProjects\TodoApp\TodoApp\obj\Debug\net9.0\TodoApp.RazorAssemblyInfo.cs
-C:\Users\Filipp\RiderProjects\TodoApp\TodoApp\obj\Debug\net9.0\compressed\aphzspun44-5ipweew5fc.gz
-C:\Users\Filipp\RiderProjects\TodoApp\TodoApp\obj\Debug\net9.0\compressed\8kfpm9ehoq-72weuvjpmx.gz
-C:\Users\Filipp\RiderProjects\TodoApp\TodoApp\obj\Debug\net9.0\compressed\pnohrms5be-82a0hj86ky.gz
+C:\Users\Filipp\RiderProjects\TodoApp\TodoApp\obj\Debug\net9.0\compressed\8kfpm9ehoq-rxmcoswwod.gz
+C:\Users\Filipp\RiderProjects\TodoApp\TodoApp\obj\Debug\net9.0\compressed\nhgfoeqp08-vo62j7qiim.gz

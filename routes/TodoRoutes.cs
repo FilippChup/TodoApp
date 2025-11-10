@@ -55,19 +55,30 @@ public class TodoRoutes
         return TypedResults.Created($"/todoitems/{todoItem.Id}", todoItemDTO);
     }
 
-    public static async Task<IResult> UpdateTodo(int id, TodoItemDTO todoItemDTO, Db db)
+   public static async Task<IResult> UpdateTodo(int id, TodoItemDTO todoItemDTO, Db db)
+{
+    // Найдем задачу по ID
+    var todo = await db.Todos.FindAsync(id);
+
+    if (todo is null) return TypedResults.NotFound();  // Если задача не найдена
+
+    // Проверка, что переданы корректные данные
+    if (string.IsNullOrEmpty(todoItemDTO.Name))
     {
-        var todo = await db.Todos.FindAsync(id);
-
-        if (todo is null) return TypedResults.NotFound();
-
-        todo.Name = todoItemDTO.Name;
-        todo.IsComplete = todoItemDTO.IsComplete;
-
-        await db.SaveChangesAsync();
-
-        return TypedResults.NoContent();
+        return TypedResults.BadRequest("Task name cannot be empty.");
     }
+
+    // Обновление полей задачи
+    todo.Name = todoItemDTO.Name;
+    todo.Priority = todoItemDTO.Priority ?? todo.Priority;  // Если приоритет не передан, оставляем старое значение
+    todo.IsComplete = todoItemDTO.IsComplete;
+
+    await db.SaveChangesAsync();  // Сохраняем изменения в БД
+
+    // Возвращаем обновленную задачу
+    var updatedTodoDTO = new TodoItemDTO(todo);
+    return TypedResults.Ok(updatedTodoDTO);
+}
 
     public static async Task<IResult> DeleteTodo(int id, Db db)
     {

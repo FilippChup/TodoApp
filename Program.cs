@@ -28,7 +28,7 @@ app.MapFallbackToFile("index.html");
 
 RouteGroupBuilder todoItems = app.MapGroup("");
 
-app.MapGet("/", () => Results.Redirect("/index.html"));
+app.MapGet("/", TodoRoutes.GetAllTodoss);
 todoItems.MapGet("/api/allTasks", TodoRoutes.GetAllTodos);
 todoItems.MapGet("/api/tesst", TodoRoutes.GetAllTodoss);
 todoItems.MapGet("/api/complete",TodoRoutes.GetCompleteTodos);
