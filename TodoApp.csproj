@@ -21,4 +21,9 @@
       <None Include="wwwroot\style.css" />
     </ItemGroup>
 
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="TodoApp.IntegrationTests\obj\project.assets.json" />
+      <_ContentIncludedByDefault Remove="TodoApp.IntegrationTests\obj\TodoApp.IntegrationTests.csproj.nuget.dgspec.json" />
+    </ItemGroup>
+
 </Project>

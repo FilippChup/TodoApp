@@ -8,7 +8,7 @@ namespace TodoApp.routes;
 
 public class TodoRoutes
 {
-    public static async Task<IResult> GetAllTodos(Db db)
+    public static async Task<IResult> GetAllTodos([FromServices] Db db)
     {
         return TypedResults.Ok(await db.Todos.Select(x => new TodoItemDTO(x)).ToArrayAsync());
     }
@@ -25,11 +25,11 @@ public class TodoRoutes
         return Results.Content(html, "text/html");
     }
 
-    public static async Task<IResult> GetCompleteTodos(Db db) {
+    public static async Task<IResult> GetCompleteTodos([FromServices]Db db) {
         return TypedResults.Ok(await db.Todos.Where(t => t.IsComplete).Select(x => new TodoItemDTO(x)).ToListAsync());
     }
 
-    public static async Task<IResult> GetTodo(int id, Db db)
+    public static async Task<IResult> GetTodo(int id, [FromServices] Db db)
     {
         return await db.Todos.FindAsync(id)
             is Todo todo
@@ -37,7 +37,7 @@ public class TodoRoutes
             : TypedResults.NotFound();
     }
 
-    public static async Task<IResult> CreateTodo(TodoItemDTO todoItemDTO, Db db)
+    public static async Task<IResult> CreateTodo([FromBody] TodoItemDTO todoItemDTO, [FromServices] Db db)
     {
         var todoItem = new Todo
         {
@@ -55,7 +55,7 @@ public class TodoRoutes
         return TypedResults.Created($"/todoitems/{todoItem.Id}", todoItemDTO);
     }
 
-   public static async Task<IResult> UpdateTodo(int id, TodoItemDTO todoItemDTO, Db db)
+   public static async Task<IResult> UpdateTodo(int id, TodoItemDTO todoItemDTO, [FromServices] Db db)
 {
     // Найдем задачу по ID
     var todo = await db.Todos.FindAsync(id);
@@ -80,7 +80,7 @@ public class TodoRoutes
     return TypedResults.Ok(updatedTodoDTO);
 }
 
-    public static async Task<IResult> DeleteTodo(int id, Db db)
+    public static async Task<IResult> DeleteTodo(int id, [FromServices] Db db)
     {
         if (await db.Todos.FindAsync(id) is Todo todo)
         {
@@ -92,7 +92,7 @@ public class TodoRoutes
         return TypedResults.NotFound();
     }
 
-    public static async Task<IResult> DeleteAllTodos(Db db)
+    public static async Task<IResult> DeleteAllTodos([FromServices] Db db)
     {
         var all = db.Todos.ToList();
         db.Todos.RemoveRange(all);
@@ -101,71 +101,71 @@ public class TodoRoutes
         return TypedResults.NoContent();
     }
     
-    public class TodoApiController : ControllerBase
-    {
-        private readonly AppDbContext _db;
-        public TodoApiController(AppDbContext db)
-        {
-            _db = db;
-        }
-
-        [HttpGet("/api/")]
-        public async Task<IActionResult> GetAll()
-        {
-            var todos = await _db.Todos
-                .Select(t => new TodoItemDTO
-                {
-                    Id = t.Id,
-                    Name = t.Name,
-                    Priority = t.Priority,
-                    IsComplete = t.IsComplete
-                }).ToListAsync();
-
-            return Ok(todos);
-        }
-
-        [HttpPost("/api/")]
-        public async Task<IActionResult> Create([FromBody] TodoItemDTO todo)
-        {
-            if (todo == null || string.IsNullOrEmpty(todo.Name))
-                return BadRequest();
-
-            var newTodo = new TodoItem
-            {
-                Name = todo.Name,
-                Priority = todo.Priority,
-                IsComplete = false
-            };
-
-            _db.Todos.Add(newTodo);
-            await _db.SaveChangesAsync();
-
-            return Ok(new TodoItemDTO
-            {
-                Id = newTodo.Id,
-                Name = newTodo.Name,
-                Priority = newTodo.Priority,
-                IsComplete = newTodo.IsComplete
-            });
-        }
-        
-        [HttpPut("/api/{id}/toggle")]
-        public async Task<IActionResult> ToggleComplete(int id)
-        {
-            var todo = await _db.Todos.FindAsync(id);
-            if (todo == null)
-                return NotFound();
-
-            todo.IsComplete = !todo.IsComplete;
-            await _db.SaveChangesAsync();
-
-            return Ok(new TodoItemDTO
-            {
-                Id = todo.Id,
-                Name = todo.Name,
-                Priority = todo.Priority,
-                IsComplete = todo.IsComplete
-            });
-        }
-    }
+    // public class TodoApiController : ControllerBase
+    // {
+    //     private readonly AppDbContext _db;
+    //     public TodoApiController(AppDbContext db)
+    //     {
+    //         _db = db;
+    //     }
+    //
+    //     [HttpGet("/api/")]
+    //     public async Task<IActionResult> GetAll()
+    //     {
+    //         var todos = await _db.Todos
+    //             .Select(t => new TodoItemDTO
+    //             {
+    //                 Id = t.Id,
+    //                 Name = t.Name,
+    //                 Priority = t.Priority,
+    //                 IsComplete = t.IsComplete
+    //             }).ToListAsync();
+    //
+    //         return Ok(todos);
+    //     }
+    //
+    //     [HttpPost("/api/")]
+    //     public async Task<IActionResult> Create([FromBody] TodoItemDTO todo)
+    //     {
+    //         if (todo == null || string.IsNullOrEmpty(todo.Name))
+    //             return BadRequest();
+    //     
+    //         var newTodo = new TodoItem
+    //         {
+    //             Name = todo.Name,
+    //             Priority = todo.Priority,
+    //             IsComplete = false
+    //         };
+    //     
+    //         _db.Todos.Add(newTodo);
+    //         await _db.SaveChangesAsync();
+    //     
+    //         return Ok(new TodoItemDTO
+    //         {
+    //             Id = newTodo.Id,
+    //             Name = newTodo.Name,
+    //             Priority = newTodo.Priority,
+    //             IsComplete = newTodo.IsComplete
+    //         });
+    //     }
+    //     
+    //     [HttpPut("/api/{id}/toggle")]
+    //     public async Task<IActionResult> ToggleComplete(int id)
+    //     {
+    //         var todo = await _db.Todos.FindAsync(id);
+    //         if (todo == null)
+    //             return NotFound();
+    //
+    //         todo.IsComplete = !todo.IsComplete;
+    //         await _db.SaveChangesAsync();
+    //
+    //         return Ok(new TodoItemDTO
+    //         {
+    //             Id = todo.Id,
+    //             Name = todo.Name,
+    //             Priority = todo.Priority,
+    //             IsComplete = todo.IsComplete
+    //         });
+    //     }
+    // }
 }

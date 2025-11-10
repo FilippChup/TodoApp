@@ -58,21 +58,22 @@ header {
     color: #fff;
     margin-left: 5px;
     font-size: 20px;
-    background-color: #34e89e;
+    background-color: #044c34;
     cursor: pointer;
     border-radius: 3px;
     opacity: 0.6;
-    pointer-events: none;
+    /* Кнопка не нажималась из за строки ниже */
+    /*pointer-events: none;*/
     transition: all 0.3s ease;
 }
 
 .inputField button:hover {
-    background-color: #34e89e;
+    /*background-color: #34e89e;*/
 }
 
 .inputField button:active {
-    opacity: 1;
-    pointer-events: auto;
+    /*opacity: 1;*/
+    /*pointer-events: auto;*/
 }
 
 .task-list-wrapper {
