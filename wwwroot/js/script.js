@@ -1,17 +1,19 @@
 ﻿
 console.log("JS подключен!");
 document.addEventListener("DOMContentLoaded", function() {
-    const addButton = document.getElementById('addRowBtn');
+    const addButton = document.getElementById('addButton');
     const taskInput = document.getElementById('taskInput');
-    const tbody = document.querySelector('#todoTable tbody');
-    const pendingTasks = document.querySelector('.pendingTasks');
+    // const tbody = document.querySelector('#todoTable tbody');
+    // const pendingTasks = document.querySelector('.pendingTasks');
 
     // Функция для активации/деактивации кнопки Add
     function toggleAddButton() {
         // Включаем кнопку, если есть текст в поле ввода, иначе отключаем
         if (taskInput.value.trim() !== '') {
+            console.log('1')
             addButton.disabled = false;
         } else {
+            console.log('2')
             addButton.disabled = true;
         }
     }
@@ -23,10 +25,10 @@ document.addEventListener("DOMContentLoaded", function() {
     toggleAddButton(); // Вызываем функцию для первоначальной активации кнопки
 
     // Функция для обновления количества задач
-    function updatePendingTasksCount() {
-        const taskCount = tbody.querySelectorAll('tr').length;
-        pendingTasks.textContent = taskCount;
-    }
+    // function updatePendingTasksCount() {
+    //     const taskCount = tbody.querySelectorAll('tr').length;
+    //     pendingTasks.textContent = taskCount;
+    // }
 
     // Обработчик нажатия на кнопку Add
     addButton.addEventListener('click', async function() {
@@ -83,54 +85,54 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     // Обработчик для изменения статуса задачи
-    tbody.addEventListener('click', async function(e) {
-        if (e.target.classList.contains('status-cell')) {
-            const row = e.target.closest('tr');
-            const id = row.dataset.id;
-
-            try {
-                // Запрос на изменение статуса задачи
-                const response = await fetch(`/api/${id}/toggle`, {
-                    method: 'PUT'
-                });
-
-                if (!response.ok) {
-                    alert("Ошибка при изменении статуса");
-                    return;
-                }
-
-                const updatedTodo = await response.json();
-                e.target.textContent = updatedTodo.isComplete ? "✅" : "❌";
-            } catch (err) {
-                console.error(err);
-                alert("Ошибка соединения с сервером");
-            }
-        }
-
-        // Удаление задачи
-        if (e.target.classList.contains('delete-task')) {
-            const row = e.target.closest('tr');
-            const id = row.dataset.id;
-
-            try {
-                // Отправка запроса на удаление задачи
-                const response = await fetch(`/api/${id}`, {
-                    method: 'DELETE'
-                });
-
-                if (!response.ok) {
-                    alert("Ошибка при удалении задачи");
-                    return;
-                }
-
-                row.remove();
-                updatePendingTasksCount();
-            } catch (err) {
-                console.error(err);
-                alert("Ошибка соединения с сервером");
-            }
-        }
-    });
+    // tbody.addEventListener('click', async function(e) {
+    //     if (e.target.classList.contains('status-cell')) {
+    //         const row = e.target.closest('tr');
+    //         const id = row.dataset.id;
+    //
+    //         try {
+    //             // Запрос на изменение статуса задачи
+    //             const response = await fetch(`/api/${id}/toggle`, {
+    //                 method: 'PUT'
+    //             });
+    //
+    //             if (!response.ok) {
+    //                 alert("Ошибка при изменении статуса");
+    //                 return;
+    //             }
+    //
+    //             const updatedTodo = await response.json();
+    //             e.target.textContent = updatedTodo.isComplete ? "✅" : "❌";
+    //         } catch (err) {
+    //             console.error(err);
+    //             alert("Ошибка соединения с сервером");
+    //         }
+    //     }
+    //
+    //     // Удаление задачи
+    //     if (e.target.classList.contains('delete-task')) {
+    //         const row = e.target.closest('tr');
+    //         const id = row.dataset.id;
+    //
+    //         try {
+    //             // Отправка запроса на удаление задачи
+    //             const response = await fetch(`/api/${id}`, {
+    //                 method: 'DELETE'
+    //             });
+    //
+    //             if (!response.ok) {
+    //                 alert("Ошибка при удалении задачи");
+    //                 return;
+    //             }
+    //
+    //             row.remove();
+    //             updatePendingTasksCount();
+    //         } catch (err) {
+    //             console.error(err);
+    //             alert("Ошибка соединения с сервером");
+    //         }
+    //     }
+    // });
 
     // Инициализируем количество задач
     updatePendingTasksCount();

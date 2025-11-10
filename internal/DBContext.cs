@@ -2,6 +2,11 @@
 
 namespace TodoApp;
 
-public class Db(DbContextOptions<Db> options) : DbContext(options) {
+public class Db : DbContext
+{
+    public Db(DbContextOptions<Db> options) : base(options)
+    {
+    }
+
     public DbSet<Todo> Todos { get; set; } = null!;
 }
