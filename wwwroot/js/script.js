@@ -4,8 +4,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const addButton = document.getElementById('addButton');
     const taskInput = document.getElementById('taskInput');
     const tbody = document.getElementById('tbody');
-    
-    // const pendingTasks = document.querySelector('.pendingTasks');
+    const pendingTasks = document.querySelector('.pendingTasks');
 
     // Функция для активации/деактивации кнопки Add
     function toggleAddButton() {
@@ -136,5 +135,5 @@ document.addEventListener("DOMContentLoaded", function() {
     // });
 
     // Инициализируем количество задач
-    updatePendingTasksCount();
+    // updatePendingTasksCount();
 });
