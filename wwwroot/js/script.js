@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function() {
             tbody.appendChild(row);
 
             // Обновляем количество задач
-            // updatePendingTasksCount();
+            
 
             // Очищаем поле ввода и деактивируем кнопку
             taskInput.value = '';
