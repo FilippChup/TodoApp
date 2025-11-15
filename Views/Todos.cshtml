@@ -8,7 +8,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device=width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo App</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -19,9 +19,34 @@
         <input type="text" id="taskInput" placeholder="Enter your new Todo" />
         <button id="addButton" class="btn-primary">Add</button>
     </div>
-    <ul class="todoList">
-        
-    </ul>
+    <table class="todoTable">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Priority</th>
+            <th>IsComplete</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody id="taskTableBody">
+        @* Можно сразу отрендерить существующие задачи из модели *@
+        @foreach (var todo in Model)
+        {
+            <tr data-id="@todo.Id" class="task-row">
+                <td>@todo.Id</td>
+                <td>@todo.Name</td>
+                <td>@todo.Priority</td>
+                <td class="status-cell" style="cursor:pointer">
+                    @(todo.IsComplete ? "✅" : "❌")
+                </td>
+                <td>
+                    <button class="delete-task">Delete</button>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
     <footer>
         <span>You have <span class="pendingTasks">0</span> pending tasks</span>
         <button id="clearAllButton">Clear All</button>

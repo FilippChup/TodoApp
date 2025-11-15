@@ -52,7 +52,7 @@ public class TodoRoutes
 
         todoItemDTO = new TodoItemDTO(todoItem);
 
-        return TypedResults.Created($"/todoitems/{todoItem.Id}", todoItemDTO);
+        return TypedResults.Created($"/api/todoitems/{todoItem.Id}", todoItemDTO);
     }
     public static async Task<IResult> UpdateTodo(int id, TodoItemDTO todoItemDTO, [FromServices] Db db)
 {

@@ -34,7 +34,14 @@ app.MapGet("/", TodoRoutes.GetAllTodoss); // Рендер Razor-страницы
 api.MapGet("/", TodoRoutes.GetAllTodos);
 api.MapGet("/complete", TodoRoutes.GetCompleteTodos);
 api.MapGet("/{id:int}", TodoRoutes.GetTodo);   // <-- id должен быть int
-api.MapPost("/api/", TodoRoutes.CreateTodo);
+app.MapPost("/api", (Todo newTodo) =>
+{
+    // например сохраняешь в БД или списке
+
+    newTodo.Id = 123; // сервер должен создать id
+
+    return Results.Ok(newTodo);
+});
 api.MapPut("/{id:int}", TodoRoutes.UpdateTodo);
 api.MapDelete("/{id:int}", TodoRoutes.DeleteTodo);
 api.MapDelete("/", TodoRoutes.DeleteAllTodos);

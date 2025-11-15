@@ -15,8 +15,6 @@
 
     <ItemGroup>
       <None Include="wwwroot\favicon.ico" />
-      <None Include="wwwroot\index.html" />
-      <None Include="wwwroot\Index.js" />
       <None Include="wwwroot\mainWindow.xaml" />
       <None Include="wwwroot\style.css" />
     </ItemGroup>
