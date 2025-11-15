@@ -54,8 +54,7 @@ public class TodoRoutes
 
         return TypedResults.Created($"/todoitems/{todoItem.Id}", todoItemDTO);
     }
-
-   public static async Task<IResult> UpdateTodo(int id, TodoItemDTO todoItemDTO, [FromServices] Db db)
+    public static async Task<IResult> UpdateTodo(int id, TodoItemDTO todoItemDTO, [FromServices] Db db)
 {
     // Найдем задачу по ID
     var todo = await db.Todos.FindAsync(id);

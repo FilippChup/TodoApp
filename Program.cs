@@ -26,7 +26,7 @@ app.MapFallbackToFile("index.html");
 
 RouteGroupBuilder todoItems = app.MapGroup("");
 
-app.MapGet("/", TodoRoutes.GetAllTodoss);
+app.MapGet("/todoitems", TodoRoutes.GetAllTodoss);
 todoItems.MapGet("/api/allTasks", TodoRoutes.GetAllTodos);
 todoItems.MapGet("/api/tesst", TodoRoutes.GetAllTodoss);
 todoItems.MapGet("/api/complete",TodoRoutes.GetCompleteTodos);
@@ -35,7 +35,6 @@ todoItems.MapPost("/api/", TodoRoutes.CreateTodo);
 todoItems.MapPut("/api/{id}", TodoRoutes.UpdateTodo);
 todoItems.MapDelete("/api/{id}",TodoRoutes.DeleteTodo);
 todoItems.MapDelete("/api/", TodoRoutes.DeleteAllTodos);
-
 
 
 app.Run();
