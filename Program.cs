@@ -24,17 +24,20 @@ await using (var scope = app.Services.CreateAsyncScope())
 app.UseStaticFiles();
 app.MapFallbackToFile("index.html");
 
-RouteGroupBuilder todoItems = app.MapGroup("");
 
-app.MapGet("/todoitems", TodoRoutes.GetAllTodoss);
-todoItems.MapGet("/api/allTasks", TodoRoutes.GetAllTodos);
-todoItems.MapGet("/api/tesst", TodoRoutes.GetAllTodoss);
-todoItems.MapGet("/api/complete",TodoRoutes.GetCompleteTodos);
-todoItems.MapGet("/api/{id}", TodoRoutes.GetTodo);
-todoItems.MapPost("/api/", TodoRoutes.CreateTodo);
-todoItems.MapPut("/api/{id}", TodoRoutes.UpdateTodo);
-todoItems.MapDelete("/api/{id}",TodoRoutes.DeleteTodo);
-todoItems.MapDelete("/api/", TodoRoutes.DeleteAllTodos);
+// ----------- ПРАВИЛЬНЫЕ МАРШРУТЫ -----------
+var api = app.MapGroup("/api/todos");
 
+app.MapGet("/", TodoRoutes.GetAllTodoss); // Рендер Razor-страницы
+
+// JSON API
+api.MapGet("/", TodoRoutes.GetAllTodos);
+api.MapGet("/complete", TodoRoutes.GetCompleteTodos);
+api.MapGet("/{id:int}", TodoRoutes.GetTodo);   // <-- id должен быть int
+api.MapPost("/api/", TodoRoutes.CreateTodo);
+api.MapPut("/{id:int}", TodoRoutes.UpdateTodo);
+api.MapDelete("/{id:int}", TodoRoutes.DeleteTodo);
+api.MapDelete("/", TodoRoutes.DeleteAllTodos);
+// -------------------------------------------
 
 app.Run();
