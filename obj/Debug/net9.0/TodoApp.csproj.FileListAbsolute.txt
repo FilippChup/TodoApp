@@ -160,4 +160,4 @@ C:\Users\Filipp\RiderProjects\TodoAppFilipp1\obj\Debug\net9.0\refint\TodoApp.dll
 C:\Users\Filipp\RiderProjects\TodoAppFilipp1\obj\Debug\net9.0\TodoApp.pdb
 C:\Users\Filipp\RiderProjects\TodoAppFilipp1\obj\Debug\net9.0\TodoApp.genruntimeconfig.cache
 C:\Users\Filipp\RiderProjects\TodoAppFilipp1\obj\Debug\net9.0\ref\TodoApp.dll
-C:\Users\Filipp\RiderProjects\TodoAppFilipp1\obj\Debug\net9.0\compressed\xnkqfq2hla-{0}-rxfnbuxxlk-rxfnbuxxlk.gz
+C:\Users\Filipp\RiderProjects\TodoAppFilipp1\obj\Debug\net9.0\compressed\xnkqfq2hla-{0}-e29k8dgjk7-e29k8dgjk7.gz
