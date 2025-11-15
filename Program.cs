@@ -1,3 +1,4 @@
+using System.CodeDom.Compiler;
 using Microsoft.EntityFrameworkCore;
 using TodoApp;
 using TodoApp.routes;
@@ -39,6 +40,7 @@ app.MapPost("/api", (Todo newTodo) =>
     // например сохраняешь в БД или списке
     return Results.Ok(newTodo);
 });
+app.MapPost("/api/todoitems", TodoRoutes.CreateTodo);
 api.MapPut("/{id:int}", TodoRoutes.UpdateTodo);
 api.MapDelete("/{id:int}", TodoRoutes.DeleteTodo);
 api.MapDelete("/", TodoRoutes.DeleteAllTodos);
