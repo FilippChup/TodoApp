@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         try {
             // Отправка запроса на сервер для добавления задачи
-            const response = await fetch('/api/api', {
+            const response = await fetch('/api', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
