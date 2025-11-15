@@ -67,13 +67,13 @@ document.addEventListener("DOMContentLoaded", function() {
                 <td>${savedTodo.id}</td>
                 <td>${savedTodo.name}</td>
                 <td>${savedTodo.priority}</td>
-                <td class="status-cell" style="cursor:pointer">${savedTodo.isComplete ? "✅" : "❌"}</td>
+                <td class="status-cell" style="cursor:pointer">${savedTodo.IsComplete ? "✅" : "❌"}</td>
                 <td><button class="delete-task">Delete</button></td>
             `;
             tbody.appendChild(row);
 
             // Обновляем количество задач
-            updatePendingTasksCount();
+            // updatePendingTasksCount();
 
             // Очищаем поле ввода и деактивируем кнопку
             taskInput.value = '';
