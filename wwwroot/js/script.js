@@ -3,7 +3,7 @@ console.log("JS подключен!");
 document.addEventListener("DOMContentLoaded", function() {
     const addButton = document.getElementById('addButton');
     const taskInput = document.getElementById('taskInput');
-    const tbody = document.querySelector('#todoTable tbody');
+    const tbody = document.querySelector('tbody');
     // const pendingTasks = document.querySelector('.pendingTasks');
 
     // Функция для активации/деактивации кнопки Add
