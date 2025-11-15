@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const addButton = document.getElementById('addButton');
     const taskInput = document.getElementById('taskInput');
     const tbody = document.getElementById('tbody');
-    const pendingTasks = document.querySelector('.pendingTasks');
+    // const pendingTasks = document.querySelector('.pendingTasks');
 
     // Функция для активации/деактивации кнопки Add
     function toggleAddButton() {
@@ -25,10 +25,10 @@ document.addEventListener("DOMContentLoaded", function() {
     toggleAddButton(); // Вызываем функцию для первоначальной активации кнопки
 
     // Функция для обновления количества задач
-     function updatePendingTasksCount() {
-         const taskCount = tbody.querySelectorAll('tr').length;
-         pendingTasks.textContent = taskCount;
-     }
+    //  function updatePendingTasksCount() {
+    //      const taskCount = tbody.querySelectorAll('tr').length;
+    //      pendingTasks.textContent = taskCount;
+    //  }
 
     // Обработчик нажатия на кнопку Add
     addButton.addEventListener('click', async function() {
@@ -135,5 +135,5 @@ document.addEventListener("DOMContentLoaded", function() {
     // });
 
     // Инициализируем количество задач
-    updatePendingTasksCount();
+    // updatePendingTasksCount();
 });
