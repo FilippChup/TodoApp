@@ -37,9 +37,6 @@ api.MapGet("/{id:int}", TodoRoutes.GetTodo);   // <-- id должен быть i
 app.MapPost("/api", (Todo newTodo) =>
 {
     // например сохраняешь в БД или списке
-
-    newTodo.Id = 123; // сервер должен создать id
-
     return Results.Ok(newTodo);
 });
 api.MapPut("/{id:int}", TodoRoutes.UpdateTodo);
