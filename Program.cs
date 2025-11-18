@@ -32,18 +32,18 @@ var api = app.MapGroup("/api/todos");
 app.MapGet("/", TodoRoutes.GetAllTodoss); // Рендер Razor-страницы
 
 // JSON API
-api.MapGet("/", TodoRoutes.GetAllTodos);
-api.MapGet("/complete", TodoRoutes.GetCompleteTodos);
-api.MapGet("/{id:int}", TodoRoutes.GetTodo);   // <-- id должен быть int
+// app.MapGet("/", TodoRoutes.GetAllTodos);
+app.MapGet("/complete", TodoRoutes.GetCompleteTodos);
+app.MapGet("/{id:int}", TodoRoutes.GetTodo);   // <-- id должен быть int
 app.MapPost("/api", (Todo newTodo) =>
 {
     // например сохраняешь в БД или списке
     return Results.Ok(newTodo);
 });
 app.MapPost("/api/todoitems", TodoRoutes.CreateTodo);
-api.MapPut("/{id:int}", TodoRoutes.UpdateTodo);
-api.MapDelete("/{id:int}", TodoRoutes.DeleteTodo);
-api.MapDelete("/", TodoRoutes.DeleteAllTodos);
+app.MapPut("/{id:int}", TodoRoutes.UpdateTodo);
+app.MapDelete("/api/todoitems/{id:int}", TodoRoutes.DeleteTodo);
+app.MapDelete("/", TodoRoutes.DeleteAllTodos);
 // -------------------------------------------
 
 app.Run();

@@ -37,8 +37,13 @@ public class TodoRoutes
             : TypedResults.NotFound();
     }
 
-    public static async Task<IResult> CreateTodo([FromBody] TodoItemDTO todoItemDTO, [FromServices] Db db)
+    public static async Task<IResult> CreateTodo(
+        [FromBody] TodoItemDTO todoItemDTO,
+        [FromServices] Db db,
+        [FromServices] ILogger<TodoRoutes> logger
+        )
     {
+        logger.LogInformation("Log from CreateTodo, {1}, {2}", todoItemDTO.Name, todoItemDTO.Priority);
         var todoItem = new Todo
         {
             IsComplete = todoItemDTO.IsComplete,
@@ -79,15 +84,21 @@ public class TodoRoutes
     return TypedResults.Ok(updatedTodoDTO);
 }
 
-    public static async Task<IResult> DeleteTodo(int id, [FromServices] Db db)
+    public static async Task<IResult> DeleteTodo(
+        int id, 
+        [FromServices] Db db,
+        [FromServices] ILogger<TodoRoutes> logger
+        )
+    
     {
+        logger.LogInformation("Log from DeleteTodo");
         if (await db.Todos.FindAsync(id) is Todo todo)
         {
             db.Todos.Remove(todo);
             await db.SaveChangesAsync();
             return TypedResults.NoContent();
         }
-
+    
         return TypedResults.NotFound();
     }
 

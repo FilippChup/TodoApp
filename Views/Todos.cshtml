@@ -30,15 +30,15 @@
         </tr>
         </thead>
         <tbody id="tbody">
-        @* Можно сразу отрендерить существующие задачи из модели *@
-        @foreach (var todo in Model)
+        @* Рендерим существующие задачи с последовательной нумерацией *@
+        @foreach (var item in Model.Select((todo, index) => new { todo, index }))
         {
-            <tr data-id="@todo.Id" class="task-row">
-                <td>@todo.Id</td>
-                <td>@todo.Name</td>
-                <td>@todo.Priority</td>
+            <tr data-id="@item.todo.Id" class="task-row">
+                <td>@(item.index + 1)</td> <!-- последовательный номер для таблицы -->
+                <td>@item.todo.Name</td>
+                <td>@item.todo.Priority</td>
                 <td class="status-cell" style="cursor:pointer">
-                    @(todo.IsComplete ? "✅" : "❌")
+                    @(item.todo.IsComplete ? "✅" : "❌")
                 </td>
                 <td>
                     <button class="delete-task">Delete</button>

@@ -1,8 +1,8 @@
 ﻿
 console.log("JS подключен!");
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", async function () {
     const addButton = document.getElementById('addButton');
-    const deleteButton = document.getElementById('deleteButton');
+    const deleteTask = document.getElementsByClassName('delete-task');
     const taskInput = document.getElementById('taskInput');
     const tbody = document.getElementById('tbody');
     // const pendingTasks = document.querySelector('.pendingTasks');
@@ -26,13 +26,12 @@ document.addEventListener("DOMContentLoaded", function() {
     toggleAddButton(); // Вызываем функцию для первоначальной активации кнопки
 
     // Функция для обновления количества задач
-    //  function updatePendingTasksCount() {
-    //      const taskCount = tbody.querySelectorAll('tr').length;
-    //      pendingTasks.textContent = taskCount;
-    //  }
-
+    // function updatePendingTasksCount() {
+    //     const taskCount = tbody.querySelectorAll('tr').length;
+    //     pendingTasks.textContent = taskCount;
+    // }
     // Обработчик нажатия на кнопку Add
-    addButton.addEventListener('click', async function() {
+    addButton.addEventListener('click', async function () {
         const taskName = taskInput.value.trim();
         if (!taskName) return;  // Если поле пустое, не делать ничего
 
@@ -44,22 +43,21 @@ document.addEventListener("DOMContentLoaded", function() {
         };
 
         try {
-            // Отправка запроса на сервер для добавления задачи
-            const response = await fetch('/api', {
+            console.log("hello world");
+            const response = await fetch('/api/todoitems', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(newTodo)
             });
-
+            console.log("hello body");
             if (!response.ok) {
                 alert("Ошибка при добавлении задачи");
                 return;
             }
 
             const savedTodo = await response.json(); // Получаем добавленную задачу
-
             // Добавляем задачу в таблицу
             const row = document.createElement('tr');
             row.dataset.id = savedTodo.id;
@@ -74,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function() {
             tbody.appendChild(row);
 
             // Обновляем количество задач
-            
+
 
             // Очищаем поле ввода и деактивируем кнопку
             taskInput.value = '';
@@ -83,7 +81,7 @@ document.addEventListener("DOMContentLoaded", function() {
             console.error(err);
             alert("Не удалось подключиться к серверу");
         }
-    });
+    })
 
     // Обработчик для изменения статуса задачи
     // tbody.addEventListener('click', async function(e) {
@@ -110,31 +108,41 @@ document.addEventListener("DOMContentLoaded", function() {
     //         }
     //     }
     //
-    //     // Удаление задачи
-    //     if (e.target.classList.contains('delete-task')) {
-    //         const row = e.target.closest('tr');
-    //         const id = row.dataset.id;
-    //
-    //         try {
-    //             // Отправка запроса на удаление задачи
-    //             const response = await fetch(`/api/${id}`, {
-    //                 method: 'DELETE'
-    //             });
-    //
-    //             if (!response.ok) {
-    //                 alert("Ошибка при удалении задачи");
-    //                 return;
-    //             }
-    //
-    //             row.remove();
-    //             updatePendingTasksCount();
-    //         } catch (err) {
-    //             console.error(err);
-    //             alert("Ошибка соединения с сервером");
-    //         }
-    //     }
-    // });
+        // Удаление задачи
+        document.addEventListener("click", async function (e) {
+            if (e.target.classList.contains("delete-task")) {
+                const row = e.target.closest("tr");
+                const id = row.dataset.id;
+                try {
+                    // Отправка запроса на удаление задачи
+                    
+                    console.log("Мы находимся перед запросом");
+                    console.log("ID перед отправкой:", id);
+                    const response = await fetch(`/api/todoitems/${id}`, {
+                        method: 'DELETE'
+                    });
 
+                    console.log("Мы находимся после запроса");
+                    if (!response.ok) {
+                        alert("Ошибка при удалении задачи");
+                    }
+
+                    console.log("Что-то пошло не так");
+                    row.remove();
+                    console.log("task deleted")
+                    // updatePendingTasksCount();
+                    debugger
+                    const rows = document.querySelectorAll("#tbody tr");
+                    rows.forEach((r, index) => {
+                        r.querySelector("td:first-child").textContent = index + 1;
+                    });
+                    
+                } catch (err) {
+                    console.error(err);
+                    alert("Ошибка соединения с сервером");
+                }
+            }
+        })
+    });
     // Инициализируем количество задач
     // updatePendingTasksCount();
-});
