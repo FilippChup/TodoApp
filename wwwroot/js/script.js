@@ -2,6 +2,7 @@
 console.log("JS подключен!");
 document.addEventListener("DOMContentLoaded", function() {
     const addButton = document.getElementById('addButton');
+    const deleteButton = document.getElementById('deleteButton');
     const taskInput = document.getElementById('taskInput');
     const tbody = document.getElementById('tbody');
     // const pendingTasks = document.querySelector('.pendingTasks');
